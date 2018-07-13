@@ -5,7 +5,9 @@ import './MyStuff.css';
 class MyStuff extends React.Component {
   render () {
     return (
-      <h1 className='MyStuff'>My Stuff</h1>
+      <div className='MyStuff'>
+        <h1 >My Stuff</h1>
+      </div>
     );
   }
 }

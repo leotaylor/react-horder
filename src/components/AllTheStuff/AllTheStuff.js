@@ -5,7 +5,9 @@ import './AllTheStuff.css';
 class AllTheStuff extends React.Component {
   render () {
     return (
-      <h1 className='AllTheStuff'>All The Stuff</h1>
+      <div className='AllTheStuff'>
+        <h1 >All The Stuff</h1>
+      </div>
     );
   }
 }
