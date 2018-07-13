@@ -9,6 +9,9 @@ import MyStuff from '../components/MyStuff/MyStuff';
 import Register from '../components/Register/Register';
 import Home from '../components/Home/Home';
 
+import fbConnection from '../firebaseRequests/connection';
+fbConnection();
+
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
   return (
     <Route
