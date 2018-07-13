@@ -1,6 +1,7 @@
 import React from 'react';
 
 import stuffRequest from '../../firebaseRequests/stuff';
+import Stuff from '../Item/Item';
 
 import './AllTheStuff.css';
 
@@ -23,12 +24,19 @@ class AllTheStuff extends React.Component {
   render () {
     const stuffComponents = this.state.stuff.map((stuff) => {
       return (
-        <h2>{stuff.itemName}</h2>
+        // <h2>{stuff.itemName}</h2>
+        <Stuff
+          key={stuff.id}
+          details={stuff}
+        />
       );
     });
     return (
-      <div className='AllTheStuff'>
-        {stuffComponents}
+      <div className='AllTheStuff col-xs-12'>
+        <h1>All The Stuff</h1>
+        <ul>
+          {stuffComponents}
+        </ul>
       </div>
     );
   }
