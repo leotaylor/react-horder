@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar/Navbar';
 // import AllTheStuff from '../components/AllTheStuff/AllTheStuff';
 import MyStuff from '../components/MyStuff/MyStuff';
 // import Login from '../components/Login/Login';
-// import Register from '../components/Register/Register';
+import Register from '../components/Register/Register';
 import Home from '../components/Home/Home';
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
@@ -26,6 +26,23 @@ const PrivateRoute = ({ component: Component, authed, ...rest}) => {
   );
 };
 
+const PublicRoute = ({ component: Component, authed, ...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/mystuff', state: {from: props.location}}}
+          />
+        )
+      }
+    />
+  );
+};
+
 class App extends Component {
   state={
     authed: false,
@@ -34,10 +51,6 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        {/* <AllTheStuff /> */}
-        <MyStuff />
-        {/* <Login /> */}
-        {/* <Register /> */}
         <BrowserRouter>
           <div>
             <Navbar />
@@ -49,6 +62,11 @@ class App extends Component {
                     path='/mystuff'
                     authed={this.state.authed}
                     componenet={MyStuff}
+                  />
+                  <PublicRoute
+                    path="/register"
+                    authed={this.state.authed}
+                    component={Register}
                   />
                 </Switch>
               </div>
