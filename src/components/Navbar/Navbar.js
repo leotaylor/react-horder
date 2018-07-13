@@ -39,7 +39,7 @@ class Navbar extends React.Component {
                   </li>
                 </ul>
               ) : (
-                <ul className="nav navbar-nav navbat-right">
+                <ul className="nav navbar-nav navbar-right">
                   <li>
                     <Link to="/login">Login</Link>
                   </li>
