@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import authRequests from '../../firebaseRequests/auth';
 
@@ -14,7 +14,7 @@ class Login extends React.Component {
   };
 
   loginClickEvent = (e) => {
-    const {user} = this.state;
+    const { user } = this.state;
     e.preventDefault();
     authRequests
       .loginUser(user)
@@ -47,7 +47,7 @@ class Login extends React.Component {
           <form className="form-horizontal col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
             <div className="form-group">
               <label htmlFor="inputEmail" className="col-sm-2 control-label">
-                Email
+                Email:
               </label>
               <div className="col-sm-10">
                 <input
