@@ -5,13 +5,11 @@ import './Item.css';
 class Item extends React.Component {
 
   addClickEvent = () => {
-    console.error('item?', this.props.details);
     this.props.addToMyStuff(this.props.details);
   }
 
   render () {
     const { details } = this.props;
-    // const image = require(`${details.itemImage}`);
     return (
       <li className='Item'>
         <img src={details.itemImage} alt={details.itemName}/>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import stuffRequest from '../../firebaseRequests/stuff';
 import Item from '../Item/Item';
-import MyStuff from '../MyStuff/MyStuff';
+// import MyStuff from '../MyStuff/MyStuff';
 import authRequest from '../../firebaseRequests/auth';
 import mystuffRequest from '../../firebaseRequests/mystuff';
 
@@ -55,10 +55,10 @@ class AllTheStuff extends React.Component {
         <ul>
           {stuffComponents}
         </ul>
-        <MyStuff
+        {/* <MyStuff
           things={this.state.things}
           myStuff={this.state.myStuff}
-        />
+        /> */}
       </div>
     );
   }

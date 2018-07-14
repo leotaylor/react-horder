@@ -21,8 +21,21 @@ class MyStuff extends React.Component {
       });
   }
 
+  deleteItemClick = (e) => {
+    const deleteThis = e.target.id;
+    // const tempArray = [...this.state.myStuff];
+    myStuffRequest
+      .deleteRequest(deleteThis)
+      .then(() => {
+        const filteredItems = this.state.myStuff.filter(item => item.id !== deleteThis);
+        this.setState({myStuff: filteredItems});
+      })
+      .catch((err) => {
+        console.error('error in myStuff delete', err);
+      });
+  }
+
   renderMyStuff = (obj) => {
-    // const stuff = this.props.things.find(x => x.id === key);
     return (
       <li
         key={obj.id}
@@ -31,7 +44,7 @@ class MyStuff extends React.Component {
           <img src={obj.itemImage} alt={obj.itemName}/>
           <h3>{obj.itemName}</h3>
           <p>{obj.itemDescription}</p>
-          <button className="btn btn-danger">Purge</button>
+          <button className="btn btn-danger" id={obj.id} onClick={this.deleteItemClick}>Purge</button>
         </div>
       </li>
     );
