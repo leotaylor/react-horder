@@ -5,6 +5,7 @@ import './Item.css';
 class Item extends React.Component {
 
   addClickEvent = () => {
+    console.error('item?', this.props.details.id);
     this.props.addToMyStuff(this.props.details.id);
   }
 

@@ -2,19 +2,27 @@ import React from 'react';
 
 import stuffRequest from '../../firebaseRequests/stuff';
 import Stuff from '../Item/Item';
+// import MyStuff from '../MyStuff/MyStuff';
 
 import './AllTheStuff.css';
 
 class AllTheStuff extends React.Component {
   state = {
-    stuff: [],
+    things: [],
+    // myStuff: {},
   }
+
+  // addToMyStuff = (key) => {
+  //   const newStuff = {...this.state.myStuff};
+  //   newStuff[key] = newStuff[key] + 1 || 1;
+  //   this.setState({ myStuff: newStuff });
+  // };
 
   componentDidMount () {
     stuffRequest
       .getRequest()
-      .then((stuff) => {
-        this.setState({stuff});
+      .then((things) => {
+        this.setState({things});
       })
       .catch((err) => {
         console.error('error with stuff get request', err);
@@ -22,12 +30,13 @@ class AllTheStuff extends React.Component {
   }
 
   render () {
-    const stuffComponents = this.state.stuff.map((stuff) => {
+    const stuffComponents = this.state.things.map((stuff) => {
       return (
         // <h2>{stuff.itemName}</h2>
         <Stuff
           key={stuff.id}
           details={stuff}
+          // addToMyStuff={this.addToMyStuff}
         />
       );
     });
@@ -37,6 +46,10 @@ class AllTheStuff extends React.Component {
         <ul>
           {stuffComponents}
         </ul>
+        {/* <MyStuff
+          things={this.state.things}
+          myStuff={this.state.myStuff}
+        /> */}
       </div>
     );
   }
