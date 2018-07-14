@@ -34,4 +34,17 @@ const postRequest = (newThing) => {
   });
 };
 
-export default { getRequest, postRequest };
+const deleteRequest = (myPrecious) => {
+  return new Promise ((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/myStuff/${myPrecious}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getRequest, postRequest, deleteRequest };
