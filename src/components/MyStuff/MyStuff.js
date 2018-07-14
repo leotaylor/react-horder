@@ -31,6 +31,7 @@ class MyStuff extends React.Component {
           <img src={obj.itemImage} alt={obj.itemName}/>
           <h3>{obj.itemName}</h3>
           <p>{obj.itemDescription}</p>
+          <button className="btn btn-danger">Purge</button>
         </div>
       </li>
     );
