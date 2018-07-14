@@ -1,20 +1,37 @@
 import React from 'react';
 
 import stuffRequest from '../../firebaseRequests/stuff';
-import Stuff from '../Item/Item';
+import Item from '../Item/Item';
+import MyStuff from '../MyStuff/MyStuff';
+import authRequest from '../../firebaseRequests/auth';
+import mystuffRequest from '../../firebaseRequests/mystuff';
 
 import './AllTheStuff.css';
 
 class AllTheStuff extends React.Component {
   state = {
-    stuff: [],
+    things: [],
+    myStuff: {},
+  }
+
+  addToMyStuff = (newThing) => {
+    // const newThing = {things: {...this.state.myStuff}};
+    newThing.uid = authRequest.getUid();
+    mystuffRequest
+      .postRequest(newThing)
+      .then(() => {
+        this.props.history.push('/mystuff');
+      })
+      .catch((err) => {
+        console.error('error in myStuff post', err);
+      });
   }
 
   componentDidMount () {
     stuffRequest
       .getRequest()
-      .then((stuff) => {
-        this.setState({stuff});
+      .then((things) => {
+        this.setState({things});
       })
       .catch((err) => {
         console.error('error with stuff get request', err);
@@ -22,12 +39,13 @@ class AllTheStuff extends React.Component {
   }
 
   render () {
-    const stuffComponents = this.state.stuff.map((stuff) => {
+    const stuffComponents = this.state.things.map((stuff) => {
       return (
         // <h2>{stuff.itemName}</h2>
-        <Stuff
+        <Item
           key={stuff.id}
           details={stuff}
+          addToMyStuff={this.addToMyStuff}
         />
       );
     });
@@ -37,6 +55,10 @@ class AllTheStuff extends React.Component {
         <ul>
           {stuffComponents}
         </ul>
+        <MyStuff
+          things={this.state.things}
+          myStuff={this.state.myStuff}
+        />
       </div>
     );
   }
