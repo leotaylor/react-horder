@@ -4,8 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Description
 User creates an account for access to "All The Stuff". User can then select things to hoard. A list of hoarded items will show up in "My Stuff". No Styling.
 
-[View Deployed Site](https://hoarder-ca3b3.firebaseapp.com)
-#### Technologies Used
+## Technologies Used
 - Firebase
 - React
 - Bootstrap
